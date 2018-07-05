@@ -1,0 +1,41 @@
+2018-06-30 00:14:52,651 [http-nio-8080-exec-1] INFO  [pers.robin.revolver.controller.UserController] - gender=>man
+2018-06-30 00:14:52,652 [http-nio-8080-exec-1] INFO  [pers.robin.revolver.controller.UserController] - name=>jackson
+2018-06-30 00:14:52,652 [http-nio-8080-exec-1] INFO  [pers.robin.revolver.controller.UserController] - username=>hello
+2018-07-05 16:28:27,765 [http-nio-8080-exec-1] ERROR [pers.robin.revolver.controller.UserController] - org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'user_name' cannot be null
+### The error may involve pers.robin.revolver.dao.UserDao.update-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE           users         SET           user_name = ?,           name = ?,           password = ?,           email = ?,           gender = ?,           age = ?,           telephone = ?,           user_type = ?         WHERE           id = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'user_name' cannot be null
+; ]; Column 'user_name' cannot be null; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'user_name' cannot be null
+2018-07-05 16:38:00,554 [http-nio-8080-exec-2] ERROR [pers.robin.revolver.controller.UserController] - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_name' in 'class pers.robin.revolver.model.User'
+2018-07-05 16:39:19,238 [http-nio-8080-exec-6] ERROR [pers.robin.revolver.controller.UserController] - org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'user_name' in 'class pers.robin.revolver.model.User'
+2018-07-05 16:43:00,670 [http-nio-8080-exec-5] ERROR [pers.robin.revolver.controller.UserController] - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE
+          id = 3' at line 12
+### The error may involve pers.robin.revolver.dao.UserDao.update-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE           users         SET                     name = ?,                                           age = ?,                               WHERE           id = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE
+          id = 3' at line 12
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE
+          id = 3' at line 12
+2018-07-05 16:47:51,271 [http-nio-8080-exec-1] ERROR [pers.robin.revolver.controller.UserController] - org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'age = 22  
+         
+         
+        WHERE
+          id = 3' at line 9
+### The error may involve pers.robin.revolver.dao.UserDao.update-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE           users         SET                     name = ?                                           age = ?                               WHERE           id = ?
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'age = 22  
+         
+         
+        WHERE
+          id = 3' at line 9
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'age = 22  
+         
+         
+        WHERE
+          id = 3' at line 9
