@@ -6,7 +6,7 @@
         <result property="userName" column="user_name"/>
         <result property="name" column="name"/>
         <result property="password" column="password"/>
-        <result property="email" column="gender"/>
+        <result property="email" column="email"/>
         <result property="gender" column="gender"/>
         <result property="age" column="age"/>
         <result property="telephone" column="telephone"/>
@@ -69,6 +69,12 @@
       FROM users
       WHERE id = #{id}
       ORDER BY create_time desc;
+    </select>
+    <select id="findByUserName" parameterType="java.lang.String" resultType="pers.robin.revolver.model.User">
+        SELECT
+          <include refid="columnList" />
+        FROM users
+        WHERE user_name = #{userName};
     </select>
     <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="pers.robin.revolver.model.User" >
         INSERT INTO

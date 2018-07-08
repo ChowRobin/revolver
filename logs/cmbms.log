@@ -39,3 +39,8 @@
          
         WHERE
           id = 3' at line 9
+2018-07-08 21:32:05,723 [http-nio-8080-exec-1] INFO  [pers.robin.revolver.controller.AuthenticationController] - user password is Todd1234
+2018-07-08 21:32:25,060 [http-nio-8080-exec-2] INFO  [pers.robin.revolver.controller.AuthenticationController] - user password is Todd1234
+2018-07-08 21:32:25,245 [http-nio-8080-exec-2] INFO  [pers.robin.revolver.controller.AuthenticationController] - userInDB password is Todd1234
+2018-07-08 21:32:38,621 [http-nio-8080-exec-3] INFO  [pers.robin.revolver.controller.AuthenticationController] - user password is odd1234
+2018-07-08 21:32:38,624 [http-nio-8080-exec-3] INFO  [pers.robin.revolver.controller.AuthenticationController] - userInDB password is Todd1234

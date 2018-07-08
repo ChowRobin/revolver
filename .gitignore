@@ -28,3 +28,5 @@
 *.sql
 
 application.yml
+.mvn
+logs

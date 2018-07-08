@@ -13,6 +13,8 @@ public interface UserDao {
 
     User read(Integer id);
 
+    User findByUserName(String userName);
+
     void create(User user);
 
     void update(User user);
