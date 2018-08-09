@@ -9,32 +9,11 @@ public class CommonUtil {
 
     public static Map<String, Object> getParameterMap(HttpServletRequest request) {
         Map<String, String[]> properties = request.getParameterMap();
-//        for (String key : properties.keySet()) {
-//            System.out.print(key + "=> ");
-//            for (String val : properties.get(key)) {
-//                System.out.print(val + " ");
-//            }
-//            System.out.println();
-//        }
         Map<String, Object> map = new HashMap<String, Object>();
         Set<String> keySet = properties.keySet();
         for (String key : keySet) {
             String[] values = properties.get(key);
             String value = values[0];
-//            if (values != null && (values.length > 1 || !StringUtils.isNotBlank(values[0]))) {
-//                for (String val : values) {
-//                    if (val != null && "".equals(val)) {
-//                        value += val + ",";
-//                    }
-//                }
-//                if (value != null && "".equals(value)) {
-//                    value = value.substring(0, value.length() - 1);
-//                }
-//                if (key.equals("keywords")) {
-//                    value = value.replace("_", "\\_").replace("%", "\\%");
-//                }
-//                map.put(key, value);
-//            }
             map.put(key, value);
         }
         return map;

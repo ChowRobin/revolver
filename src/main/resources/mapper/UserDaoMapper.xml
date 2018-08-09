@@ -54,7 +54,7 @@
         </where>
     </sql>
     <sql id="columnList" >
-      id, user_name, name, password, email, gender, age, telephone, user_type, create_by, create_time, update_by, update_time
+     id, user_name, name, password, email, gender, age, telephone, user_type, create_by, create_time, update_by, update_time
     </sql>
     <select id="getList" parameterType="map" resultMap="userMap">
       SELECT
@@ -63,14 +63,14 @@
         <include refid="queryCondition"/>
       ORDER BY create_time desc
     </select>
-    <select id="read" parameterType="java.lang.Integer" resultType="pers.robin.revolver.model.User">
+    <select id="read" parameterType="java.lang.Integer" resultMap="userMap">
       SELECT
         <include refid="columnList" />
       FROM users
       WHERE id = #{id}
       ORDER BY create_time desc;
     </select>
-    <select id="findByUserName" parameterType="java.lang.String" resultType="pers.robin.revolver.model.User">
+    <select id="findByUserName" parameterType="java.lang.String" resultMap="userMap">
         SELECT
           <include refid="columnList" />
         FROM users
