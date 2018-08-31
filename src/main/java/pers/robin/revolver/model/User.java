@@ -1,9 +1,10 @@
 package pers.robin.revolver.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 // entity user
-public class User {
+public class User implements Serializable {
 
     private Integer id;
 
