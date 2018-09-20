@@ -12,13 +12,13 @@ public interface UserService {
 
     User findByUserName(String userName);
 
-    List<String> checkUser(User user);
+    Boolean checkUser(User user);
 
-    void create(User user);
+    Integer create(User user);
 
     void update(User user);
 
-    void delete(Integer id);
+    Boolean delete(Integer id);
 
     boolean comparePassword(User user, User userInDB);
 }

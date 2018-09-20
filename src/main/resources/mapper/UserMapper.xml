@@ -81,9 +81,9 @@
     <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="pers.robin.revolver.model.User" >
         INSERT INTO
           users
-          (user_name, name, password, email, gender, age, telephone, user_type, create_by, update_by)
+          (id, user_name, name, password, email, gender, age, telephone, user_type, create_by, update_by)
         VALUES
-          (#{userName}, #{name}, #{password}, #{email}, #{gender}, #{age}, #{telephone}, #{userType}, #{createBy}, #{updateBy})
+          (#{id}, #{userName}, #{name}, #{password}, #{email}, #{gender}, #{age}, #{telephone}, #{userType}, #{createBy}, #{updateBy})
     </insert>
     <update id="update" parameterType="pers.robin.revolver.model.User">
         UPDATE

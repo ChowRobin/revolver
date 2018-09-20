@@ -5,4 +5,6 @@ import pers.robin.revolver.model.User;
 public interface AuthenticationService {
 
     String getToken(User user);
+
+    Boolean checkUser(User user);
 }

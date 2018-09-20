@@ -1,9 +1,11 @@
 package pers.robin.revolver.service.Impl;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.robin.revolver.dao.UserDao;
+import pers.robin.revolver.exception.CheckException;
 import pers.robin.revolver.model.User;
 import pers.robin.revolver.service.UserService;
 
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> checkUser(User user) {
+    public Boolean checkUser(User user) {
         String pattern = "%s can not be null.";
         List<String> msgList = new ArrayList<String>();
         List<String> columenNotNullList = new ArrayList<String>();
@@ -45,7 +47,11 @@ public class UserServiceImpl implements UserService {
         if (this.findByUserName(user.getUserName()) != null) {
             msgList.add("this username has used.");
         }
-        return msgList;
+        if (msgList.size() == 0) {
+            return true;
+        } else {
+            throw new CheckException(StringUtils.join(msgList.toArray()));
+        }
     }
 
     @Override
@@ -54,8 +60,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void create(User user) {
+    public Integer create(User user) {
+        checkUser(user);
         userDao.create(user);
+        return user.getId();
     }
 
     @Override
@@ -64,8 +72,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public Boolean delete(Integer id) {
         userDao.delete(id);
+        if (userDao.read(id) == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

@@ -1,17 +1,15 @@
 package pers.robin.revolver.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pers.robin.revolver.bean.ResultBean;
 import pers.robin.revolver.model.User;
 import pers.robin.revolver.service.UserService;
 import pers.robin.revolver.util.CommonUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 @RestController
@@ -28,9 +26,9 @@ public class UserController {
      * @return
      */
     @GetMapping(produces = "application/json;charset=UTF-8")
-    public ResponseEntity<Object> list(HttpServletRequest request) {
+    public ResultBean<Collection<User>> getAll(HttpServletRequest request) {
         Map<String, Object> map = CommonUtil.getParameterMap(request);
-        return new ResponseEntity<>(userService.getList(map), HttpStatus.OK);
+        return new ResultBean<Collection<User>> (userService.getList(map));
     }
 
     /**
@@ -39,9 +37,8 @@ public class UserController {
      * @return
      */
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Object> getOne(@PathVariable("id")Integer id) {
-        User user = userService.read(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResultBean<User> getOne(@PathVariable("id")Integer id) {
+        return new ResultBean<>(userService.read(id));
     }
 
     /**
@@ -50,21 +47,8 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/create", produces = "application/json;charset=UTF-8")
-    public ResponseEntity<Object> create(@RequestBody User user) {
-        try {
-            List<String> msgList;
-            JSONObject jsonObject = new JSONObject();
-            msgList = userService.checkUser(user);
-            if (msgList.size() == 0) {
-                userService.create(user);
-                msgList.add("create successful.");
-            }
-            jsonObject.put("msg", msgList);
-            return new ResponseEntity<>(jsonObject, HttpStatus.OK);
-        } catch (Exception e) {
-            logger.error(e);
-            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
-        }
+    public ResultBean<Integer> create(@RequestBody User user) {
+        return new ResultBean<Integer>(userService.create(user));
     }
 
     /**
@@ -74,15 +58,10 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/{id}/update")
-    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody User user) {
-        try {
-            user.setId(id);
-            userService.update(user);
-        } catch (Exception e) {
-            logger.error(e);
-            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResultBean<Boolean> update(@PathVariable Integer id, @RequestBody User user) {
+        user.setId(id);
+        userService.update(user);
+        return new ResultBean<Boolean>(true);
     }
 
     /**
@@ -91,14 +70,8 @@ public class UserController {
      * @return
      */
     @GetMapping(value = "/{id}/delete")
-    public ResponseEntity<Object> delete(@PathVariable Integer id) {
-        try {
-            userService.delete(id);
-        } catch (Exception e) {
-            logger.error(e);
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResultBean<Boolean> delete(@PathVariable Integer id) {
+        return new ResultBean<Boolean>(userService.delete(id));
     }
 
 }

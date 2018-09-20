@@ -15,7 +15,7 @@ public interface UserDao {
 
     User findByUserName(String userName);
 
-    void create(User user);
+    Integer create(User user);
 
     void update(User user);
 
