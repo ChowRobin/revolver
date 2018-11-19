@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserService {
-    List getList(Map<String, Object> map);
+    List getList(Map<String, Object> map, int pageNum, int pageSize);
 
     User read(Integer id);
 

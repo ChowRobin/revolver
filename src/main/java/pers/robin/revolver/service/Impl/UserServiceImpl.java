@@ -1,6 +1,7 @@
 package pers.robin.revolver.service.Impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,8 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public List getList(Map<String, Object> map) {
+    public List getList(Map<String, Object> map, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return userDao.getList(map);
     }
 

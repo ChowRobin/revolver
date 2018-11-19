@@ -1,15 +1,17 @@
 package pers.robin.revolver.controller;
 
+import com.github.pagehelper.PageInfo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pers.robin.revolver.bean.PageResultBean;
 import pers.robin.revolver.bean.ResultBean;
 import pers.robin.revolver.model.User;
 import pers.robin.revolver.service.UserService;
 import pers.robin.revolver.util.CommonUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,9 +28,13 @@ public class UserController {
      * @return
      */
     @GetMapping(produces = "application/json;charset=UTF-8")
-    public ResultBean<Collection<User>> getAll(HttpServletRequest request) {
+    public PageResultBean<List<User>> getAll(
+            @RequestParam(name = "pagenum", required = false, defaultValue = "1") int pageNum,
+            @RequestParam(name = "pagesize", required = false, defaultValue = "10") int pageSize,
+            HttpServletRequest request) {
         Map<String, Object> map = CommonUtil.getParameterMap(request);
-        return new ResultBean<Collection<User>> (userService.getList(map));
+//        return new ResultBean<Collection<User>> (userService.getList(map));
+        return new PageResultBean<List<User>>(new PageInfo<>(userService.getList(map, pageNum, pageSize)));
     }
 
     /**
